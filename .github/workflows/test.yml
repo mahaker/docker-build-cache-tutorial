@@ -18,9 +18,12 @@ jobs:
           tags: |
             nodejs-app:latest
           push: false
-          output: type=docker
+          outputs: type=docker,dest=/tmp/nodejs-app.tar
           cache-from: type=gha
           cache-to: type=gha,mode=max
+
+      - name: Load Docker image
+        run: docker load --input /tmp/nodejs-app.tar
 
       - name: Run
         run: docker run --rm nodejs-app
