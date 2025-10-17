@@ -1,0 +1,14 @@
+name: Testing
+on: push
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+      - name: Docker Build
+        run: docker build -t nodejs-app .
+      - name: Run
+        run: docker run --rm nodejs-app
+
